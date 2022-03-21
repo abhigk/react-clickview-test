@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import { Card, Row, Col, Container } from "react-bootstrap";
 
 const Playlist = () =>{
+    // const data = useContext(AppData);
     const [playlistData, setPlaylistData] = useState(window.playlists);
 
     return (
