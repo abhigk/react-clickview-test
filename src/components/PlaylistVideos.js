@@ -1,14 +1,21 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
+import { useLocation } from "react-router-dom";
 import { Card, Row, Col, Container } from "react-bootstrap";
 import AppData from './Context';
 
-const Videos = () =>{
+const PlaylistVideos = () => {
     const appContext = useContext(AppData);
-    // const [videoData, setVideoData] = useState(window.videos);
-    return (
+    const location = useLocation();
+
+    const videoIds = location.state.videoIds;
+    const videoData = appContext.videosData;
+
+    const allPlaylistVideos = videoData.filter((item) => videoIds.includes(item.id));
+
+   return (
         <Container>
         <Row>
-            {appContext.videosData.map((video, k) => (
+            {allPlaylistVideos.map((video, k) => (
                 <Col key={k} xs={12} md={4} lg={3}>
                     <Card >
                     <Card.Img src={video.thumbnail} />
@@ -22,5 +29,6 @@ const Videos = () =>{
         </Row>
     </Container>
     )
-}
-export default Videos;
+};
+
+export default PlaylistVideos;
